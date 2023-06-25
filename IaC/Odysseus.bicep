@@ -27,8 +27,25 @@ resource newRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   tags: tags
 }
 
+// // module deployed new storageAccount
+// module storageAccount 'br/modules:storageaccount:2023-06-09' = {
+//   name: 'storageAccount'
+//   scope: newRG
+//   params: {
+//     projectName: projectName
+//     environmentType: environmentType
+//     location: location
+//     tags: tags
+//   }
+// }
+
+/////////////////////////
+// No module, No registry
+/////////////////////////
+
+
 // module deployed new storageAccount
-module storageAccount 'br/modules:storageaccount:2023-06-09' = {
+module storageAccount './storageAccount.bicep' = {
   name: 'storageAccount'
   scope: newRG
   params: {
